@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title><%= title %></title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel='stylesheet' href='/css/app.css'>
+</head>
+<body>
+	<div class="container py-5">
+		<h2>Formulario de registro</h2>
+		<form action="/register" method="POST">
+			<div class="row">
+				<div class="col-6">
+					<div class="form-group">
+						<label>Nombre completo:</label>
+						<input type="text" name="fullname" class="form-control" data-name="nombre completo">
+						<div class="invalid-feedback"> </div>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="form-group">
+						<label>Email:</label>
+						<input type="email" name="email" class="form-control" data-name="email">
+						<div class="invalid-feedback"> </div>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="form-group">
+						<label>Nombre de usuario:</label>
+						<input type="text" name="username" class="form-control" data-name="nombre de usuario">
+						<div class="invalid-feedback"> </div>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="form-group">
+						<label>País de nacimiento:</label>
+						<select name="country" class="form-control" data-name="país de nacimiento">
+							<option value="">Elegí un país</option>
+							<option value="ar">Argentina</option>
+							<option value="br">Brasil</option>
+							<option value="co">Colombia</option>
+						</select>
+						<div class="invalid-feedback"> </div>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="form-group">
+						<label>Contraseña:</label>
+						<input type="password" name="password" class="form-control" data-name="contraseña">
+						<div class="invalid-feedback"> </div>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="form-group">
+						<label>Repetir Contraseña:</label>
+						<input type="password" name="rePassword" class="form-control" data-name="repetir contraseña">
+						<div class="invalid-feedback"> </div>
+					</div>
+				</div>
+			</div>
+			<button class="btn btn-info btn-block">Registrarse</button>
+		</form>
+	</div>
+
+	<script defer src="/js/validator.js"></script>
+	<script defer src="/js/validateRegister.js"></script>
+</body>
+</html>

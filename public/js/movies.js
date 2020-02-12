@@ -7,19 +7,15 @@ const apiCall = (url, callback) => {
 
 let endPoint = 'http://localhost:4040/movies/api';
 
-let moviesToStorage = [];
+let moviesToStorage = localStorage.getItem('favoriteMovies') ? JSON.parse(localStorage.getItem('favoriteMovies')) : [];
 
-apiCall(endPoint, (data) => {
-	console.log(localStorage.getItem('favoriteMovies'));
-	
-	let favoriteMoviesArray = JSON.parse(localStorage.getItem('favoriteMovies'));
-	
+apiCall(endPoint, (data) => {	
 	for (const movie of data.data) {		
 		document.querySelector('ul').innerHTML += `
-			<li ${favoriteMoviesArray.includes(movie.title) ? 'style="color: red"' : null }> 
+			<li ${moviesToStorage.includes(movie.title) ? 'style="color: red"' : null }> 
 				${movie.title} 
 				<button data-title="${movie.title}">
-					Agregar a favoritos
+					${moviesToStorage.includes(movie.title) ? 'Quitar a favoritos' : 'Agregar a favoritos' }
 				</button>
 			</li>
 		`;
@@ -31,9 +27,13 @@ apiCall(endPoint, (data) => {
 		oneButton.addEventListener('click', function () {
 			if (!moviesToStorage.includes(this.dataset.title)) {
 				moviesToStorage.push(this.dataset.title);
-				console.log(moviesToStorage);
+				this.parentElement.style.color = 'red';
+				this.parentElement.querySelector('button').innerText = 'Quitar de favoritos';
+			} else {
+				this.parentElement.style.color = 'black';
+				this.parentElement.querySelector('button').innerText = 'Agregar de favoritos';
+				moviesToStorage = moviesToStorage.filter(oneMovie => oneMovie != this.dataset.title);
 			}
-			
 			localStorage.setItem('favoriteMovies', JSON.stringify(moviesToStorage));
 		});
 	});
